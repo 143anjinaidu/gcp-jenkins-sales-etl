@@ -1,0 +1,7 @@
+order_id,order_date,customer,product,quantity,price,region
+101,2026-11-01,Abhi,Laptop,2,50000,South
+102,2026-11-01,Ravi,Mouse,3,500,North
+103,2026-11-02,John,Keyboard,2,1500,East
+104,2026-11-02,Sam,Monitor,1,12000,West
+105,2026-11-03,David,Mobile,2,25000,South
+107,2026-11-04,Rahul,Laptop,1,55000,East
