@@ -1,5 +1,10 @@
+
 pipeline {
     agent any
+
+    environment {
+        PYTHON = 'C:\\Users\\Lenovo\\AppData\\Local\\Programs\\Python\\Python311\\python.exe'
+    }
 
     stages {
         stage('Checkout') {
@@ -11,7 +16,7 @@ pipeline {
 
         stage('Setup Python') {
             steps {
-                bat 'py -3.11 -m venv .venv'
+                bat '"%PYTHON%" -m venv .venv'
                 bat '.venv\\Scripts\\python.exe -m pip install --upgrade pip'
                 bat '.venv\\Scripts\\python.exe -m pip install -r requirements-ci.txt'
             }
@@ -19,14 +24,12 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                echo 'Running automated tests'
                 bat '.venv\\Scripts\\python.exe -m pytest -v'
             }
         }
 
         stage('Run Sales ETL') {
             steps {
-                echo 'Executing Sales ETL'
                 bat '.venv\\Scripts\\python.exe etl.py'
             }
         }
@@ -43,7 +46,6 @@ pipeline {
         success {
             echo 'Sales ETL CI Pipeline completed successfully!'
         }
-
         failure {
             echo 'Sales ETL CI Pipeline failed. Check the console output.'
         }
